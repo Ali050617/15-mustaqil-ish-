@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}EduLMS - Student Detail{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1 style="font-size: 2rem; color: var(--primary);">{{ student.first_name }} {{ student.last_name }}</h1>
+        <p>ID: {{ student.id }}</p>
+
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <h3>Personal Information</h3>
+                <p>Email: {{ student.email }}</p>
+                <p>Phone: {{ student.phone_number }}</p>
+            </div>
+            <div>
+                <a href="{{ student.get_update_url }}" class="btn btn-primary">Edit Profile</a>
+                <a href="{{ student.get_delete_url }}" class="btn btn-danger">Delete Student</a>
+            </div>
+        </div>
+
+        <h3>Enrolled Courses</h3>
+        <ul>
+            {% for course in student.course.all %}
+                <li>{{ course.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'students:student_list' %}" class="btn btn-primary">Back to Student List</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}EduLMS - Delete Student{% endblock %}
+
+{% block content %}
+    <div class="card" style="max-width: 500px; margin: 4rem auto; text-align: center;">
+        <h2 style="color: var(--danger);">Delete Student</h2>
+        <p>Are you sure you want to delete student "{{ student.first_name }} {{ student.last_name }}"? This action cannot be undone.</p>
+
+        <form action="{{ student.get_delete_url }}" method="POST">
+            {% csrf_token %}
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button type="submit" class="btn btn-danger">Yes, Delete Student</button>
+                <a href="{% url 'students:student_list' %}" class="btn btn-primary">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
