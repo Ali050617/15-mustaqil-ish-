@@ -24,7 +24,7 @@
                 <h3 style="color: var(--text-light)">Course Statistics</h3>
                 <div class="form-group">
                     <label>Enrolled Students</label>
-                    <p style="color: var(--primary); font-size: 2rem; font-weight: 700;">{{ course.enrolled_students.count }}</p>
+                    <p style="color: var(--primary); font-size: 2rem; font-weight: 700;">{{ course.students.count }}</p>
                 </div>
                 <div class="form-group">
                     <label>Average Progress</label>
@@ -53,9 +53,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for student in course.enrolled_students.all %}
+                        {% for student in course.students.all %}
                         <tr>
-                            <td>{{ student.name }}</td>
+                            <td>{{ student.first_name }} {{ student.last_name }}</td>
                             <td>{{ student.email }}</td>
                             <td>{{ student.enrollment_date }}</td>
                             <td>{{ student.progress }}%</td>

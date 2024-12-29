@@ -17,19 +17,19 @@ def student_create(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         phone_number = request.POST.get('phone_number')
-        course_id = request.POST.get('course')
-        if first_name and last_name and email and phone_number and course_id:
-            course = Course.objects.get(pk=course_id)
-            Course.objects.create(
+        course_ids = request.POST.getlist('course')  # Bir nechta kursni olish uchun `getlist` ishlatamiz
+
+        if first_name and last_name and email and phone_number and course_ids:
+            student = Student.objects.create(
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
                 phone_number=phone_number,
-                course=course
             )
+            student.course.set(course_ids)
             return redirect('students:student_list')
     ctx = {'courses': courses}
-    return render(request,'students/student-create.html', ctx)
+    return render(request, 'students/student-create.html', ctx)
 
 
 def student_update(request, pk):
@@ -64,4 +64,5 @@ def student_delete(request, pk):
         student.delete()
         messages.success(request, 'Student deleted successfully!')
         return redirect('students:student_list')
-    return render(request, 'students/student-confirm-delete.html', {'student': student})
+    ctx = {'student': student}
+    return render(request, 'students/student-delete-confirm.html', ctx)

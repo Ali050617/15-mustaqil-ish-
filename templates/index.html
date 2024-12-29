@@ -24,7 +24,7 @@
                 <p style="color: var(--text-light); margin-bottom: 1.5rem;">
                     Manage student enrollments, monitor progress, and maintain student records seamlessly.
                 </p>
-                <a href="student-list.html" class="btn btn-primary">View Students</a>
+                <a href="{% url 'students:student_list' %}" class="btn btn-primary">View Students</a>
             </div>
         </div>
 
@@ -35,8 +35,8 @@
                     <p style="color: var(--text-light);">Create your first course or add new students to begin.</p>
                 </div>
                 <div style="display: flex; gap: 1rem;">
-                    <a href="course-create.html" class="btn btn-primary">Create Course</a>
-                    <a href="student-create.html" class="btn btn-primary">Add Student</a>
+                    <a href="{% url 'courses:courses_create' %}" class="btn btn-primary">Create Course</a>
+                    <a href="{% url 'students:student_create' %}" class="btn btn-primary">Add Student</a>
                 </div>
             </div>
         </div>

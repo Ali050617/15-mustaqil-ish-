@@ -88,4 +88,4 @@ def course_delete(request, pk):
         course.delete()
         return redirect('courses:courses_list')
     ctx = {'course': course}
-    return render(request, 'courses/course_confirm_delete.html', ctx)
+    return render(request, 'courses/course-delete-confirm.html', ctx)
