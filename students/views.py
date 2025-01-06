@@ -17,16 +17,16 @@ def student_create(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         phone_number = request.POST.get('phone_number')
-        course_ids = request.POST.getlist('course')  # Bir nechta kursni olish uchun `getlist` ishlatamiz
+        course_id = request.POST.getlist('course')
 
-        if first_name and last_name and email and phone_number and course_ids:
+        if first_name and last_name and email and phone_number and course_id:
             student = Student.objects.create(
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
                 phone_number=phone_number,
             )
-            student.course.set(course_ids)
+            student.course.set(course_id)
             return redirect('students:student_list')
     ctx = {'courses': courses}
     return render(request, 'students/student-create.html', ctx)

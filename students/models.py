@@ -1,9 +1,10 @@
 from django.db import models
 from courses.models import Course
 from django.shortcuts import reverse
+from courses.base_models import BaseModel
 
 
-class Student(models.Model):
+class Student(BaseModel):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)

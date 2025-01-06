@@ -1,8 +1,9 @@
 from django.db import models
 from django.shortcuts import reverse
+from courses.base_models import BaseModel
 
 
-class Course(models.Model):
+class Course(BaseModel):
     name = models.CharField(max_length=100)
     description = models.TextField()
     duration = models.PositiveIntegerField()
